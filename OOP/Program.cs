@@ -1,12 +1,16 @@
 ﻿namespace OOP;
 class Student
 {
-    public string name = "Undefined";
-    public string Name
+    readonly string university = "BSU";
+    const int years = 4;
+    private static int counter = 0;
+    public static void DisplayCounter()
     {
-        set { name = value; }
-        get { return name; }
-        }
+        Console.WriteLine($"Создано {counter} объектов Student");
+    }
+
+    public string name = "Undefined";
+    public string Name { set; get;}
     public int age = 18;
     public int Age
     {
@@ -44,9 +48,9 @@ class Student
         get { return age; }
     }
 
-    public Student() { name = "Undefined"; age = 18; evMarks = 5; }
-    public Student(string a) { name = a; age = 18; evMarks = 5; }
-    public Student(string a, int b, int c) { name = a; age = b; evMarks = c; }
+    public Student() { name = "Undefined"; age = 18; evMarks = 5; counter++; }
+    public Student(string a, string b) { name = a; age = 18; evMarks = 5; university = b; counter++; }
+    public Student(string a, int b, int c) { name = a; age = b; evMarks = c; counter++; }
     public void Marks()
     {
         Console.WriteLine("Введите средний балл");
@@ -54,7 +58,7 @@ class Student
     }
     public void Print()
     {
-        Console.WriteLine($"Имя - {name}, возраст - {age}, средний балл - {evMarks}");
+        Console.WriteLine($"Имя - {name}, возраст - {age}, средний балл - {evMarks}, университет - {university}, количество лет обучения - {years}");
     }
 }
 struct StudentStruct
@@ -81,7 +85,7 @@ class Program
         Bill.Marks();
         Bill.name = "Bill";
         Bill.Print();
-        Student Sten = new Student("Sten");
+        Student Sten = new Student("Sten", "BSMU");
         Sten.Print();
         StudentStruct Advard = new StudentStruct();
         Advard.Print();
@@ -90,5 +94,6 @@ class Program
         Advard.Print();
         StudentStruct Dan = new StudentStruct("Dan", 5, 5);
         Dan.Print();
+        Student.DisplayCounter();
     }
 }
